@@ -31,6 +31,35 @@ def computesPmt(PV, r,n):
     Pmt = r * PV/(1-(1+r)**-n)
     return Pmt
 
+def computesPv(Pmt, r ,n):
+    """
+    
+
+    Parameters
+    ----------
+    Pmt : TYPE float
+        DESCRIPTION. how much i can afford for monthly payment
+    r : TYPE float
+        DESCRIPTION. interest rate APR
+    n : TYPE integer
+        DESCRIPTION. number of months
+
+    Returns
+    -------
+    PV: TYPE. float
+        Description. amunt of $$ i can afford to borrow
+    
+    formula:
+    PV =(1-(1+r)**(-n)) *Pmt / r
+
+    
+    r = r/100
+    r = r/12
+    """
+    
+    Pv = (1-(1+r)**(-n)) * Pmt / r
+    return Pv
+
 # input the PV
 import numpy as np
 
@@ -59,3 +88,21 @@ if choice == 2:
     pmt = computesPmt(PV, r,n)
     pmt = np.round(pmt, 2)
     print(f"payment is {pmt: } per month")
+
+if choice == 1:
+    Pmt = input('enter Pmt: ')
+    Pmt = float(Pmt)
+    print(f"Pmt = {Pmt} \n")
+    
+    r= input('interest APR: ')
+    r = float(r)/100
+    r = r/12
+    print(f"interest = {r: 0.3f}")
+    
+    n = int(input('how many months: '))
+    print(f"\nn = {n} months")
+    
+    Pv = computesPv(Pmt, r, n)
+    print(Pv)
+   
+    
